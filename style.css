@@ -160,8 +160,6 @@ main{
   width: 420px;
   overflow: hidden;
   position: relative;
-  cursor: pointer;
-
 }
 
 .img img {
@@ -195,8 +193,10 @@ main{
   font-size: 25px;
   color: #fff;
   mix-blend-mode: difference;
-  display: none;
+  overflow: hidden;
 }
+
+
 
 
 
@@ -204,7 +204,7 @@ main{
 
 body{
   position: fixed;
-  animation: scroll 5s forwards;
+  animation: scroll 10s forwards;
 } 
 
 
@@ -238,8 +238,9 @@ body{
     opacity: 0.9;
   }
 
-  .image3{
-
+  .image1 img{
+     scale: 1.2;
+     opacity: 0;
   }
 
 
@@ -299,6 +300,7 @@ body{
   top: -100%;
   scale: 1;
 }
+
 
 
 @media (max-width: 600px) {

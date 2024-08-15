@@ -16,6 +16,7 @@
 </div>    
 
 
+
 <div class="centreline"></div>
 
 <div class="collection">
@@ -110,7 +111,12 @@
 
 
 
+
+
+
 <script>
+
+
     const lenis = new Lenis({
         duration: 1.7,
         direction: 'vertical',
@@ -234,6 +240,10 @@
         velocity = inertia;
         inertiaScroll();
     }
+
+
+
+
 </script>
 
 
@@ -270,14 +280,26 @@ CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
           ease: 'expo.inOut',
       },0)
 
-      .from(".gim img", {
-          duration: 3.3,
 
-
-          stagger: 0.12,
-          ease: 'expo.inOut',
+      .to(".image1 img", {
+        duration: 3.3,
+         opacity: 1,
+         ease: 'expo.Out',
       },0)
 
+      .from(".image1 img", {
+        duration: 3.3,
+         scale: 1.1,
+         ease: 'expo.Out',
+      },0)
+
+
+
+      .from(".menu p", {
+        duration: 3.3,
+         y: 100,
+         ease: 'expo.Out',
+      },0)
 
       .to(".gim",{
         duration: 3.3,
@@ -297,8 +319,13 @@ CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
 
 
 
+
+
+
 <script>
     gsap.registerPlugin(ScrollTrigger);
+
+    let Animating = false; // Flag to track animation status
 
     document.querySelectorAll('.img img').forEach((project, index) => {
         let speed = 0.25; // Adjust this value for desired speed
@@ -323,6 +350,9 @@ CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
 
         // Add click event for the image container
         project.closest('.img').addEventListener('click', () => {
+            if (Animating) return; // Prevent the effect if already animating
+            Animating = true; // Set the flag to true
+
             const fixedContainer = document.querySelector('.stable');
             const tl = gsap.timeline();
 
@@ -365,13 +395,10 @@ CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
             tl.to(imgClone, {
                 top: `${targetTop}px`, // Move to target top position
                 left: `${targetLeft}px`, // Move to target left position
-                height: '73vh', // Adjust as needed
-                width: '77vh', // Adjust as needed
+                height: '80vh', // Adjust as needed
+                width: '87vh', // Adjust as needed
                 ease: 'ease-out-cubic',
                 duration: 2.1,
-                onUpdate: () => {
-                    projectClone.style.transform = transformMatrix; // Ensure clone retains the exact parallax effect
-                }
             }, 0)
             .to(projectClone, {
                 yPercent: 8, // Move to target top position
@@ -420,6 +447,7 @@ CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
                             imgClone.remove();
                             gsap.set(project.closest('.img'), { visibility: 'visible' });
                             lenis.off('scroll', handleScroll);
+                            Animating = false; // Reset the flag when animation is done
                         }
                     }
                 });
@@ -430,6 +458,8 @@ CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
         });
     });
 </script>
+
+
 
 
 
