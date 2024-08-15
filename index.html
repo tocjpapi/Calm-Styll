@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <title>Treasure Onwuchekwa</title>
+</head>
+<body>
+
+
+    
+<div class="menu">
+    <p>menu</p>
+</div>    
+
+
+<div class="centreline"></div>
+
+<div class="collection">
+
+    <div class="scroller" id="left">
+        <div class="img img1 gim">
+            <img src="1.webp" draggable="false" srcset="">
+        </div>
+
+        <div class="img img2 gim">
+            <img src="2.webp"draggable="false"  alt="">
+        </div>
+
+        <div class="img img3">
+            <img src="3.webp"  draggable="false"  alt="" srcset="">
+        </div>
+        <div class="img img4">
+            <img src="4.webp"  draggable="false"  alt="">
+        </div>
+        <div class="img img5">
+            <img src="5.webp"  draggable="false"  alt="">
+        </div>
+    </div>
+
+</div>
+
+<div class="fixed smooth-scroll-wrapper">
+    <div class="tobescrolled " >
+    <div class="image image1">
+        <img src="1.webp" draggable="false" srcset="">
+    </div>
+    <div class="image image2">
+        <img src="2.webp"draggable="false"  alt="">
+    </div>
+    <div class="image image3">
+        <img src="3.webp"  draggable="false"  alt="" srcset="">
+    </div>
+    <div class="image image4">
+        <img src="4.webp"  draggable="false"  alt="">
+    </div>
+    <div class="image image5">
+        <img src="5.webp"  draggable="false"  alt="">
+    </div>
+
+</div>
+</div>
+
+
+<div class="stable"></div>
+
+
+<script>
+    (function() {
+        const body = document.body,
+              scrollWrap = document.querySelector(".smooth-scroll-wrapper"),
+              speed = 1; // Increase this value for faster interpolation
+
+        let offset = 0;
+
+        // Set the body's height based on scrollWrap's height
+        function setBodyHeight() {
+            const height = scrollWrap.getBoundingClientRect().height - 1;
+            body.style.height = `${Math.floor(height)}px`;
+        }
+
+        setBodyHeight();
+        window.addEventListener('resize', setBodyHeight);
+
+        function smoothScroll() {
+            const yOffset = window.pageYOffset * 2.57; // Increase this multiplier to increase distance moved per scroll
+            offset += (yOffset - offset) * speed;
+            const scroll = `translateY(-${offset}px) translateZ(0)`;
+            scrollWrap.style.transform = scroll;
+            requestAnimationFrame(smoothScroll);
+        }
+
+        smoothScroll();
+    })();
+</script>
+
+
+
+
+
+
+
+<script src="gsap-main.js"></script>
+<script src="flip.js"></script>
+<script src="ScrollTrigger.js"></script>
+<script src="lenis.js"></script>
+<script src="CustomEase.js"></script>
+
+
+
+<script>
+    const lenis = new Lenis({
+        duration: 1.7,
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smooth: true,
+        smoothTouch: false,
+        touchMultiplier: 1,
+        infinite: false,
+    });
+    
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    
+    requestAnimationFrame(raf);
+    
+    let isDragging = false;
+    let startY = 0;
+    let startScrollY = 0;
+    let targetScrollY = 0;
+    let lastScrollY = 0;
+    let velocity = 0;
+    let isAnimating = false;
+    let clickDisabled = false;
+    const friction = 0.25;
+    const dragSensitivity = 1;
+    
+    function clampScroll(scrollY) {
+        const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
+        return Math.max(0, Math.min(scrollY, maxScrollY));
+    }
+    
+    document.addEventListener('mousedown', (event) => {
+        isDragging = true;
+        startY = event.clientY;
+        startScrollY = lenis.scroll;
+        lastScrollY = startScrollY;
+    });
+    
+    document.addEventListener('mousemove', (event) => {
+        if (isDragging) {
+            const deltaY = (event.clientY - startY) * dragSensitivity;
+            targetScrollY = clampScroll(startScrollY - deltaY);
+            if (!isAnimating) {
+                animateScroll();
+            }
+        }
+    });
+    
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+        clickDisabled = true;
+    
+        setTimeout(() => {
+            clickDisabled = false;
+        }, 100);
+    
+        if (Math.abs(velocity) > 0.1) {
+            applyInertia();
+        }
+    });
+    
+    document.addEventListener('click', (event) => {
+        if (clickDisabled) {
+            event.preventDefault(); 
+            event.stopPropagation();
+        }
+    });
+    
+    document.addEventListener('selectstart', (event) => {
+        if (isDragging) {
+            event.preventDefault();
+        }
+    });
+    
+    document.addEventListener('keydown', (event) => {
+        const scrollAmount = 200; 
+        if (event.key === 'ArrowUp') {
+            targetScrollY = clampScroll(lenis.scroll - scrollAmount);
+            animateScroll();
+        } else if (event.key === 'ArrowDown') {
+            targetScrollY = clampScroll(lenis.scroll + scrollAmount);
+            animateScroll();
+        } else if (event.key === ' ') {
+            event.preventDefault(); 
+            targetScrollY = clampScroll(lenis.scroll + window.innerHeight);
+            animateScroll();
+        }
+    });
+    
+    function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+    }
+    
+    function animateScroll() {
+        isAnimating = true;
+        const currentScrollY = lenis.scroll;
+        const distance = targetScrollY - currentScrollY;
+        const easing = easeOutCubic(Math.min(1, Math.abs(distance) / 100));
+        const newScrollY = currentScrollY + distance * easing;
+        lenis.scrollTo(newScrollY);
+    
+        if (Math.abs(targetScrollY - newScrollY) > 0.5) {
+            requestAnimationFrame(animateScroll);
+        } else {
+            isAnimating = false;
+        }
+    }
+    
+    function applyInertia() {
+        const inertia = (targetScrollY - lastScrollY) * 0.3;
+        function inertiaScroll() {
+            velocity *= friction;
+            const newScrollY = clampScroll(lenis.scroll + velocity);
+            if (Math.abs(velocity) > 0.1 && newScrollY !== 0 && newScrollY !== document.documentElement.scrollHeight - window.innerHeight) {
+                lenis.scroll = newScrollY;
+                requestAnimationFrame(inertiaScroll);
+            }
+        }
+        velocity = inertia;
+        inertiaScroll();
+    }
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+        }
+    });
+</script>
+
+
+
+
+<script>
+gsap.registerPlugin(CustomEase) 
+
+CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
+
+    const tl = gsap.timeline();
+
+    tl.from(".gim", {
+          duration: 3.3,
+          scale:1,
+          y: '20vh',
+          stagger: 0.12,
+          ease: 'expo.inOut',
+      },0)
+
+      .from(".gim img", {
+          duration: 3.3,
+
+
+          stagger: 0.12,
+          ease: 'expo.inOut',
+      },0)
+
+
+      .to(".gim",{
+        duration: 3.3,
+        opacity:1,
+        ease: 'expo.inOut',
+        stagger: 0.12,
+      },0)
+
+
+
+
+</script>
+
+
+
+
+
+
+
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    document.querySelectorAll('.img img').forEach((project, index) => {
+        let speed = 0.25; // Adjust this value for desired speed
+
+        // Apply parallax effect
+        gsap.to(project, {
+            y: () => {
+                let scrollPosition = window.pageYOffset;
+                return scrollPosition * speed;
+            },
+            ease: "none",
+            scrollTrigger: {
+                trigger: project.closest('.img'),
+                start: index < 1 ? "top 90%" : "top bottom", // Adjust start for the first two images
+                end: "bottom top",
+                scrub: true,
+                onUpdate: (self) => {
+                    project.style.transform = `translateY(${self.progress * (self.end - self.start) * speed}px)`;
+                }
+            }
+        });
+
+        // Add click event for the image container
+        project.closest('.img').addEventListener('click', () => {
+            const fixedContainer = document.querySelector('.stable');
+            const tl = gsap.timeline();
+
+            // Clone the clicked image container
+            const imgClone = project.closest('.img').cloneNode(true);
+            const projectClone = imgClone.querySelector('img');
+
+            // Get the bounding rectangle and transform of the original image container
+            const rect = project.closest('.img').getBoundingClientRect();
+            const computedStyle = window.getComputedStyle(project);
+            const transformMatrix = computedStyle.transform;
+
+            // Set the style for the cloned image container
+            imgClone.style.position = 'absolute';
+            imgClone.style.top = `${rect.top + window.scrollY}px`;
+            imgClone.style.left = `${rect.left + window.scrollX}px`;
+            imgClone.style.width = `${rect.width}px`;
+            imgClone.style.height = `${rect.height}px`;
+            imgClone.style.margin = 0; // Ensure no margin interferes
+            imgClone.style.padding = 0; // Ensure no padding interferes
+            imgClone.style.zIndex = 100;
+            imgClone.style.opacity = 0; // Start with opacity 0 for a seamless transition
+
+            // Apply the exact same transform to the clone
+            projectClone.style.transform = transformMatrix;
+
+            // Append the cloned image container to the body
+            document.body.appendChild(imgClone);
+
+            // Hide the original image container and immediately set clone's opacity to 1
+            gsap.set(project.closest('.img'), { visibility: 'hidden' });
+            gsap.to(imgClone, { opacity: 1, duration: 0 }); // Ensure no visible flicker
+
+            // Calculate the target position within the fixed container
+            const containerRect = fixedContainer.getBoundingClientRect();
+            const targetTop = containerRect.top + window.scrollY + 50; // Adjust as needed
+            const targetLeft = containerRect.left + window.scrollX + 20; // Adjust as needed
+
+            // Create a timeline for the clone
+            tl.to(imgClone, {
+                top: `${targetTop}px`, // Move to target top position
+                left: `${targetLeft}px`, // Move to target left position
+                height: '73vh', // Adjust as needed
+                width: '77vh', // Adjust as needed
+                ease: 'ease-out-cubic',
+                duration: 2.1,
+                onUpdate: () => {
+                    projectClone.style.transform = transformMatrix; // Ensure clone retains the exact parallax effect
+                }
+            }, 0)
+            .to(projectClone, {
+                yPercent: 8, // Move to target top position
+                ease: 'ease-out-cubic',
+                duration: 2.1,
+            }, 0);
+
+            // Function to handle scroll and reanimate the cloned image container back to the original position
+            const handleScroll = () => {
+                const originalRect = project.closest('.img').getBoundingClientRect();
+
+                // Ensure clone animates back to the original image container's position
+                gsap.to(imgClone, {
+                    top: `${originalRect.top + window.scrollY}px`,
+                    left: `${originalRect.left + window.scrollX}px`,
+                    height: `${originalRect.height}px`,
+                    width: `${originalRect.width}px`,
+                    duration: 2.1,
+                    ease: 'ease-out-cubic',
+                    onUpdate: () => {
+                        projectClone.style.transform = transformMatrix; // Maintain exact parallax effect during return
+
+                        const cloneRect = imgClone.getBoundingClientRect();
+                        if (
+                            Math.abs(cloneRect.top - originalRect.top) < 0.5 &&
+                            Math.abs(cloneRect.left - originalRect.left) < 0.5 &&
+                            Math.abs(cloneRect.width - originalRect.width) < 0.5 &&
+                            Math.abs(cloneRect.height - originalRect.height) < 0.5
+                        ) {
+                            // Snap the clone into place
+                            gsap.set(imgClone, {
+                                top: `${originalRect.top + window.scrollY}px`,
+                                left: `${originalRect.left + window.scrollX}px`,
+                                height: `${originalRect.height}px`,
+                                width: `${originalRect.width}px`,
+                            });
+
+                            // Reset yPercent to 0 on the cloned project
+                            gsap.to(projectClone, { 
+                               yPercent: 0, 
+                               duration: 2.1,
+                               ease: 'ease-out-cubic',
+                            });
+
+                            // Remove the cloned image container and restore the original
+                            imgClone.remove();
+                            gsap.set(project.closest('.img'), { visibility: 'visible' });
+                            lenis.off('scroll', handleScroll);
+                        }
+                    }
+                });
+            };
+
+            // Attach the scroll event handler
+            lenis.on('scroll', handleScroll);
+        });
+    });
+</script>
+
+
+
+
+
+
+
+<script>
+    document.addEventListener('scroll', function() {
+        const projects = document.querySelectorAll('.image img');
+        let scrollPosition = window.pageYOffset;
+        
+        projects.forEach(project => {
+            let speed = 0.6; 
+            project.style.transform = `translateY(${scrollPosition * speed}px)`;
+        });
+    });
+</script>
+
+
+
+
+<script src="https://cdn.apple-mapkit.com/mk/5.75.1/mapkit.js"></script>
+
+
+
+
+
+
+
+    
+</body>
+</html>

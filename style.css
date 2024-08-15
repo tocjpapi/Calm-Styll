@@ -1,0 +1,311 @@
+@font-face {
+    font-family: 'nue';
+    src: url('nm5.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'grand';
+    src: url('Respira-Black.42d5d5f.woff2') format('woff2');
+}
+
+
+
+@font-face {
+    font-family: 'itali';
+    src: url('inferi-italic-variable-wght.woff2') format('woff2');
+
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+
+:root {
+  --bg: #fff; 
+  --text:  #000;
+}
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  font-size: calc(100vw / 1512 * 10);
+
+}
+
+
+
+
+
+
+
+
+body {
+    font-family: 'nue';
+  font-weight: 200;
+  font-size: medium;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  width: 100vw;
+  height: 100vh; 
+  overscroll-behavior: contain;  
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+
+}
+
+main{
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100%;
+}
+
+#ios-scrolling {
+  -webkit-scroll-behavior: smooth;
+  overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  behavior: smooth;
+  overflow-y: auto;
+}
+
+
+::-webkit-scrollbar{
+    width: 0;
+  }
+
+  
+  ::selection{
+    background-color: #fff;
+    color: #000;
+  }
+
+  img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+
+.collection{
+    height: 264.56vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroller{
+    width: 100vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+}
+
+.nav{
+
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 35px;
+  color: #000;
+  position: fixed;
+  z-index: 9999999;
+}
+
+.item2{
+  opacity: 0.5;
+}
+
+.img {
+  height: 40vh;
+  width: 420px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+
+}
+
+.img img {
+  height: 164%;
+  width: 120%;
+  position: absolute;
+  left: -20%;
+  top: -64%;
+  transform: translateY(-8%);
+  transform-origin: center;
+}
+
+
+
+
+ /* .img:hover{
+    height: 73vh;
+    width: 77vh;
+} */
+
+
+.menu{
+  cursor: pointer;
+  position: fixed;
+  right: 40px;
+  top: 40px;
+  z-index: 999999;
+  filter: blur(0.2px);
+  height: fit-content;
+  opacity: 0.8;
+  font-size: 25px;
+  color: #fff;
+  mix-blend-mode: difference;
+  display: none;
+}
+
+
+
+
+
+body{
+  position: fixed;
+  animation: scroll 5s forwards;
+} 
+
+
+@keyframes scroll {
+  to{
+      position: relative;
+  }
+}
+
+.gim{
+  opacity: 0;
+}
+
+
+
+
+
+
+.centreline{
+    height: 1px;
+    width: 100vw;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+
+    pointer-events: none;
+    z-index: 999999;
+  }
+
+  .fixed img{
+    opacity: 0.9;
+  }
+
+  .image3{
+
+  }
+
+
+  .image4{
+    animation: margin-;
+  }
+
+  .fixed{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: -9;
+
+ }
+
+
+ .tobescrolled{
+  height: fit-content;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  
+ }
+
+
+ .stable{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -9;
+  pointer-events: none;
+ }
+
+
+ .image{
+    height: 105vh;
+    width: 100vw;
+    filter: grayscale();
+    position: relative;
+    overflow: hidden;
+    background: #000;
+
+ }
+
+
+
+ .image img{
+  height: 200%;
+  width: 100%;
+  left: 0%;
+  position: absolute;
+  top: -100%;
+  scale: 1;
+}
+
+
+@media (max-width: 600px) {
+
+
+.fixed{
+  display: none;
+}
+
+}
