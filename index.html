@@ -9,13 +9,28 @@
 </head>
 <body>
 
+    
+
 
     
 <div class="menu">
-    <p>menu</p>
+    <p>Menu</p>
 </div>    
 
-
+<div class="loader">
+    <div class="loaderimg">
+        <img src="5.webp"  draggable="false"  alt="">
+    </div>
+    <div class="loaderimg">
+        <img src="justa.webp"  draggable="false"  alt="">
+    </div>
+    <div class="loaderimg">
+        <img src="3.webp"  draggable="false"  alt="">
+    </div>
+    <div class="loaderimg">
+        <img src="2.webp"  draggable="false"  alt="">
+    </div>
+</div>
 
 <div class="centreline"></div>
 
@@ -34,7 +49,7 @@
             <img src="3.webp"  draggable="false"  alt="" srcset="">
         </div>
         <div class="img img4">
-            <img src="4.webp"  draggable="false"  alt="">
+            <img src="justa.webp"  draggable="false"  alt="">
         </div>
         <div class="img img5">
             <img src="5.webp"  draggable="false"  alt="">
@@ -42,6 +57,8 @@
     </div>
 
 </div>
+
+
 
 <div class="fixed smooth-scroll-wrapper">
     <div class="tobescrolled " >
@@ -55,7 +72,7 @@
         <img src="3.webp"  draggable="false"  alt="" srcset="">
     </div>
     <div class="image image4">
-        <img src="4.webp"  draggable="false"  alt="">
+        <img src="justa.webp"  draggable="false"  alt="">
     </div>
     <div class="image image5">
         <img src="5.webp"  draggable="false"  alt="">
@@ -65,8 +82,15 @@
 </div>
 
 
+
 <div class="stable"></div>
 
+
+<div class="loadertxt">
+ <div class="loadingtext">
+    <p><span class="close"><sup class="sup">2</sup></span> The Images I Messed With</p>
+</div>
+</div>
 
 <script>
     (function() {
@@ -118,12 +142,14 @@
 
 
     const lenis = new Lenis({
-        duration: 1.7,
+        duration: 1.9,
         direction: 'vertical',
         gestureDirection: 'vertical',
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smooth: true,
         smoothTouch: false,
         touchMultiplier: 1,
+
         infinite: false,
     });
     
@@ -142,8 +168,8 @@
     let velocity = 0;
     let isAnimating = false;
     let clickDisabled = false;
-    const friction = 0.25;
-    const dragSensitivity = 1;
+    const friction = 0;
+    const dragSensitivity = 1.1;
     
     function clampScroll(scrollY) {
         const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
@@ -266,54 +292,108 @@
 
 
 <script>
-gsap.registerPlugin(CustomEase) 
 
-CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
+    gsap.registerPlugin(CustomEase);
 
-    const tl = gsap.timeline();
+
+    CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
+
+    const tl = gsap.timeline({ paused: true });  
 
     tl.from(".gim", {
           duration: 3.3,
-          scale:1,
+          scale: 1,
           y: '20vh',
           stagger: 0.12,
           ease: 'expo.inOut',
-      },0)
-
+      }, 3.5)
 
       .to(".image1 img", {
         duration: 3.3,
          opacity: 1,
          ease: 'expo.Out',
-      },0)
+      }, 2)
+
+      .to(".sup", {
+        duration: 1.3,
+         y: -100,
+         ease: 'expo.Out',
+      }, 0)
+
+      .to(".loadertxt", {
+        duration: 0.7,
+         opacity: 0,
+      }, 0.5)
+
+      .to(".loadingtext p", {
+        duration: 3.3,
+         opacity: 100,
+         ease: 'expo.Out',
+      }, 0)
 
       .from(".image1 img", {
         duration: 3.3,
          scale: 1.1,
          ease: 'expo.Out',
-      },0)
+      }, 2.5)
 
-
-
-      .from(".menu p", {
-        duration: 3.3,
-         y: 100,
+      .to(".menu p", {
+        duration: 1.3,
+         y: 0,
          ease: 'expo.Out',
-      },0)
+      }, 3.5)
 
-      .to(".gim",{
+      .to(".gim", {
         duration: 3.3,
-        opacity:1,
+        opacity: 1,
         ease: 'expo.inOut',
         stagger: 0.12,
-      },0)
+      }, 3.5)
+
+      .to(".loaderimg", 3, {
+        clipPath: "polygon(0 100%, 100% 100%, 100% 0%, 0% 0%)",
+        ease: "power4.inOut",
+        stagger: {
+            amount: 1.4,
+        },
+        scale: 1,
+      }, 0)
+
+      .to(".loader", 3, {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+        ease: "expo.inOut",
+        delay: 1.9
+      },0);
 
 
+    function incrementSup() {
+        const sup = document.querySelector('.sup');
+        let count = parseInt(sup.textContent);
+
+        const interval = setInterval(() => {
+            if (count < 100) {
+                count++;
+                sup.textContent = count;
+            } else {
+                clearInterval(interval);
+                tl.play(); 
+            }
+        }, 50); 
+    }
 
 
+    window.onload = function() {
+   
+        incrementSup();
+    };
 </script>
 
 
+<script>
+    gsap.to('.loadingtext',{
+       opacity: 1,
+    })
+</script>
 
 
 
@@ -325,12 +405,12 @@ CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
 <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    let Animating = false; // Flag to track animation status
+    let Animating = false;
 
     document.querySelectorAll('.img img').forEach((project, index) => {
-        let speed = 0.25; // Adjust this value for desired speed
+        let speed = 0.25; 
 
-        // Apply parallax effect
+
         gsap.to(project, {
             y: () => {
                 let scrollPosition = window.pageYOffset;
@@ -339,7 +419,7 @@ CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
             ease: "none",
             scrollTrigger: {
                 trigger: project.closest('.img'),
-                start: index < 1 ? "top 90%" : "top bottom", // Adjust start for the first two images
+                start: index < 1 ? "top 90%" : "top bottom", 
                 end: "bottom top",
                 scrub: true,
                 onUpdate: (self) => {
@@ -348,69 +428,67 @@ CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
             }
         });
 
-        // Add click event for the image container
+
         project.closest('.img').addEventListener('click', () => {
-            if (Animating) return; // Prevent the effect if already animating
-            Animating = true; // Set the flag to true
+            if (Animating) return;
+            Animating = true; 
 
             const fixedContainer = document.querySelector('.stable');
             const tl = gsap.timeline();
 
-            // Clone the clicked image container
+      
             const imgClone = project.closest('.img').cloneNode(true);
             const projectClone = imgClone.querySelector('img');
 
-            // Get the bounding rectangle and transform of the original image container
+
             const rect = project.closest('.img').getBoundingClientRect();
             const computedStyle = window.getComputedStyle(project);
             const transformMatrix = computedStyle.transform;
 
-            // Set the style for the cloned image container
+
             imgClone.style.position = 'absolute';
             imgClone.style.top = `${rect.top + window.scrollY}px`;
             imgClone.style.left = `${rect.left + window.scrollX}px`;
             imgClone.style.width = `${rect.width}px`;
             imgClone.style.height = `${rect.height}px`;
-            imgClone.style.margin = 0; // Ensure no margin interferes
-            imgClone.style.padding = 0; // Ensure no padding interferes
+            imgClone.style.margin = 0;
+            imgClone.style.padding = 0; 
             imgClone.style.zIndex = 100;
-            imgClone.style.opacity = 0; // Start with opacity 0 for a seamless transition
+            imgClone.style.opacity = 0; 
 
-            // Apply the exact same transform to the clone
+
             projectClone.style.transform = transformMatrix;
 
-            // Append the cloned image container to the body
+
             document.body.appendChild(imgClone);
 
-            // Hide the original image container and immediately set clone's opacity to 1
+
             gsap.set(project.closest('.img'), { visibility: 'hidden' });
-            gsap.to(imgClone, { opacity: 1, duration: 0 }); // Ensure no visible flicker
+            gsap.to(imgClone, { opacity: 1, duration: 0 }); 
 
-            // Calculate the target position within the fixed container
+
             const containerRect = fixedContainer.getBoundingClientRect();
-            const targetTop = containerRect.top + window.scrollY + 50; // Adjust as needed
-            const targetLeft = containerRect.left + window.scrollX + 20; // Adjust as needed
+            const targetTop = containerRect.top + window.scrollY + 50; 
+            const targetLeft = containerRect.left + window.scrollX + 20; 
 
-            // Create a timeline for the clone
+
             tl.to(imgClone, {
-                top: `${targetTop}px`, // Move to target top position
-                left: `${targetLeft}px`, // Move to target left position
-                height: '80vh', // Adjust as needed
-                width: '87vh', // Adjust as needed
+                top: `${targetTop}px`, 
+                left: `${targetLeft}px`,
+                height: '73vh', 
+                width: '77vh', 
                 ease: 'ease-out-cubic',
                 duration: 2.1,
             }, 0)
             .to(projectClone, {
-                yPercent: 8, // Move to target top position
+                yPercent: 8, 
                 ease: 'ease-out-cubic',
                 duration: 2.1,
             }, 0);
 
-            // Function to handle scroll and reanimate the cloned image container back to the original position
             const handleScroll = () => {
                 const originalRect = project.closest('.img').getBoundingClientRect();
 
-                // Ensure clone animates back to the original image container's position
                 gsap.to(imgClone, {
                     top: `${originalRect.top + window.scrollY}px`,
                     left: `${originalRect.left + window.scrollX}px`,
@@ -428,7 +506,7 @@ CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
                             Math.abs(cloneRect.width - originalRect.width) < 0.5 &&
                             Math.abs(cloneRect.height - originalRect.height) < 0.5
                         ) {
-                            // Snap the clone into place
+      
                             gsap.set(imgClone, {
                                 top: `${originalRect.top + window.scrollY}px`,
                                 left: `${originalRect.left + window.scrollX}px`,
@@ -436,24 +514,23 @@ CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
                                 width: `${originalRect.width}px`,
                             });
 
-                            // Reset yPercent to 0 on the cloned project
                             gsap.to(projectClone, { 
                                yPercent: 0, 
                                duration: 2.1,
                                ease: 'ease-out-cubic',
                             });
 
-                            // Remove the cloned image container and restore the original
+
                             imgClone.remove();
                             gsap.set(project.closest('.img'), { visibility: 'visible' });
                             lenis.off('scroll', handleScroll);
-                            Animating = false; // Reset the flag when animation is done
+                            Animating = false; 
                         }
                     }
                 });
             };
 
-            // Attach the scroll event handler
+
             lenis.on('scroll', handleScroll);
         });
     });
@@ -473,7 +550,7 @@ CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
         let scrollPosition = window.pageYOffset;
         
         projects.forEach(project => {
-            let speed = 0.6; 
+            let speed = 0.62; 
             project.style.transform = `translateY(${scrollPosition * speed}px)`;
         });
     });
@@ -483,7 +560,6 @@ CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
 
 
 <script src="https://cdn.apple-mapkit.com/mk/5.75.1/mapkit.js"></script>
-
 
 
 
