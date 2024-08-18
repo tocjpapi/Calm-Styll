@@ -88,9 +88,12 @@
 
 <div class="loadertxt">
  <div class="loadingtext">
-    <p><span class="close"><sup class="sup">2</sup></span> The Images I Messed With</p>
+    <p class="sup">2</p>
 </div>
 </div>
+
+
+<div class="tint"></div>
 
 <script>
     (function() {
@@ -306,16 +309,12 @@
           y: '20vh',
           stagger: 0.12,
           ease: 'expo.inOut',
-      }, 3.5)
+      }, .5)
 
-      .to(".image1 img", {
-        duration: 3.3,
-         opacity: 1,
-         ease: 'expo.Out',
-      }, 2)
 
-      .to(".sup", {
-        duration: 1.3,
+
+      .to(".loadingtext p", {
+        duration: .5,
          y: -100,
          ease: 'expo.Out',
       }, 0)
@@ -323,47 +322,35 @@
       .to(".loadertxt", {
         duration: 0.7,
          opacity: 0,
+         clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 0)",
       }, 0.5)
 
       .to(".loadingtext p", {
-        duration: 3.3,
+        duration: .3,
          opacity: 100,
          ease: 'expo.Out',
       }, 0)
 
-      .from(".image1 img", {
+
+
+      .to(".image1 img", {
         duration: 3.3,
-         scale: 1.1,
+         opacity: 1,
          ease: 'expo.Out',
-      }, 2.5)
+      }, .5)
 
       .to(".menu p", {
         duration: 1.3,
          y: 0,
          ease: 'expo.Out',
-      }, 3.5)
+      }, .5)
 
       .to(".gim", {
         duration: 3.3,
         opacity: 1,
         ease: 'expo.inOut',
         stagger: 0.12,
-      }, 3.5)
-
-      .to(".loaderimg", 3, {
-        clipPath: "polygon(0 100%, 100% 100%, 100% 0%, 0% 0%)",
-        ease: "power4.inOut",
-        stagger: {
-            amount: 1.4,
-        },
-        scale: 1,
-      }, 0)
-
-      .to(".loader", 3, {
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-        ease: "expo.inOut",
-        delay: 1.9
-      },0);
+      }, .5)
 
 
     function incrementSup() {
@@ -378,7 +365,7 @@
                 clearInterval(interval);
                 tl.play(); 
             }
-        }, 50); 
+        }, 70); 
     }
 
 
@@ -393,6 +380,12 @@
     gsap.to('.loadingtext',{
        opacity: 1,
     })
+
+    gsap.to(".image1 img", {
+        duration: 3.3,
+         opacity: 1,
+         ease: 'expo.Out',
+      }, 4.5)
 </script>
 
 
