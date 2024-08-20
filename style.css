@@ -16,6 +16,13 @@
 
 }
 
+@font-face {
+  font-family: 'i';
+  src: url('SuisseIntlB.woff2') format('woff2');
+
+}
+
+
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -39,7 +46,7 @@ html.lenis, html.lenis body {
 
 :root {
   --bg: #e8e8e8; 
-  --text:  #2b2b2b;
+  --text:  #1d1d1d;
 }
 
 *,
@@ -206,7 +213,7 @@ main{
   filter: blur(0.2px);
   height: fit-content;
   font-size: 22px;
-  color: #b5b5b5;
+  color: #cbcbcb;
   mix-blend-mode: difference;
   overflow: hidden;
 }
@@ -222,7 +229,7 @@ main{
   filter: blur(0.2px);
   height: fit-content;
   font-size: 22px;
-  color: #b5b5b5;
+  color: #cbcbcb;
   mix-blend-mode: difference;
   overflow: hidden;
 }
@@ -236,12 +243,12 @@ main{
 
 
 
-
+/* 
 body{
   position: fixed;
   animation: scroll 4s forwards;
   pointer-events: none;
-} 
+}  */
 
 
 .loadertxt{
@@ -440,12 +447,28 @@ body{
 }
 
 .imageside{
-  width: 50vw;
+  width: 52vw;
   height: calc(100vh );
   position: absolute;
   right: 0;
 
   background: #000;
+}
+
+.textside{
+  width: 50vw;
+  height: calc(100vh );
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.groundtext{
+  position: absolute;
+  bottom: 50px;
+  font-size: 13px;
+  overflow: hidden;
 }
 
 .menu2{
@@ -458,7 +481,7 @@ body{
   height: fit-content;
   font-size: 22px;
   font-size: 22px;
-  color: #b5b5b5;
+  color: #cbcbcb;
   mix-blend-mode: difference;
   overflow: hidden;
 }
@@ -485,12 +508,19 @@ body{
   position: fixed;
   left: 60px;
   bottom: 50px;
-  font-size: 50px;
+  font-size: 3.2rem;
   overflow: hidden;
+  color: #cbcbcb;
+  mix-blend-mode: difference;
 }
 
 .imageside img{
   opacity: 0.9;
+}
+
+.dot{
+  font-family: 'i';
+  font-size: 50px;
 }
 
 .menu p{
@@ -503,7 +533,7 @@ body{
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  font-size: 110px;
+  font-size: 11rem;
   color: #cbcbcb;
   mix-blend-mode: difference;
 }
@@ -516,7 +546,60 @@ body{
 
 
 .next{
-  height: 100vh;
+  height: 100rem;
+  width: 100vw;
+  position: relative;
+}
+
+.textcase{
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+}
+
+.spacer{
+  height: 10vh;
+}
+
+
+.paragraph{
+  margin-left: 20rem;
+}
+
+.text{
+  font-size: 8rem;
+  position: absolute;
+  left: 60px;
+  width: 100rem;
+  line-height: 115%;
+  font-weight: 540;
+  color: #cbcbcb;
+  mix-blend-mode: difference;
+}
+
+.picture{
+  height: 50rem;
+  width: 45rem;
+  position: absolute;
+  left: 0;
+  top: 48rem;
+  background: #000;
+}
+
+.labelg{
+  position: absolute;
+  rotate: 90deg;
+  left: 42rem;
+  top: 90rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.picture img{
+  opacity: 0.8;
 }
 
 @media (max-width: 600px) {

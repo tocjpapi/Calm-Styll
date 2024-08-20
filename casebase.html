@@ -20,6 +20,13 @@
         <img src="12.webp" alt="" srcset="">
       </div>
 
+      <div class="textside">
+        <div class="groundtext">
+            <p>©COPYRIGHT ALL RIGHTS RESERVED</p>
+        </div>
+
+
+        
       <div class="grandtext">
         <p class="container__heading ">
             <span  class="heading__line">
@@ -33,15 +40,45 @@
         </p>
       </div>
 
+      </div>
+
       <div class="bottomno">
-        <p>01</p>
+        <p>1</p>
       </div>
     </div>
 
+    <div class="spacer"></div>
 
+
+    <div class="centreline"></div>
 <div class="next">
+  <div class="textcase">
+    <div class="picture">
+        
+       <img src="https://www.wanarun.net/blog/wp-content/uploads/2018/04/nike-zoom-vaporfly-elite-londres-prete.jpg" alt="" srcset="">
+    </div>
 
+    <div class="labelg">
+        <p>ELUID KIPCHOGE</p>
+    </div>
+    <div class="text">
+    <p><span class="paragraph"></span>Nike Aura is a Little
+        Exploration based on Nike Apparel,
+         sports wears and functional
+        products designed and hand
+        crafted by the Sweat Shop
+        <br>
+
+   </div>
+
+
+  </div>
 </div>
+
+<div class="spacer"></div>
+
+<div class="next"></div>
+
 
     <div class="tint"></div>
 
@@ -208,8 +245,8 @@ gsap.to(container.querySelectorAll('.heading__line span'), {
     const tl = gsap.timeline({
         scrollTrigger: {
             trigger: container,
-            start: "top top",
-            end: "bottom 10%",
+            start: "top 20%",  // Adjusted to start earlier
+            end: "bottom 50%", // Adjusted to end earlier
             scrub: 3, 
             ease: "power2.inOut"  
         }
@@ -217,25 +254,57 @@ gsap.to(container.querySelectorAll('.heading__line span'), {
     
     tl.to(container.querySelectorAll('.heading__line span'), {
         y: "-105",
-
         stagger: -0.6,  
         duration: 4,  
         ease: "power2.inOut" 
     },0)
-
     .to('.bottomno p', {
         y: "105",
-
-
         duration: 4,  
         ease: "power2.inOut" 
-    },0);
+    },0.1)
+
+    .to('.groundtext p', {
+        y: "-105",
+        duration: 4,  
+        ease: "power2.inOut" 
+    },0.2);
 </script>
 
 
+<script>
+gsap.registerPlugin(ScrollTrigger);
 
+gsap.to('.picture', {
+    yPercent: 30,
+    ease: "none",
+    scrollTrigger: {
+        trigger: '.picture',
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+    }
+});
+
+
+</script>
     
-
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.to('.labelg', {
+        yPercent: 40,
+        ease: "none",
+        scrollTrigger: {
+            trigger: '.picture',
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+        }
+    });
+    
+    
+    </script>
     
 </body>
 </html>
