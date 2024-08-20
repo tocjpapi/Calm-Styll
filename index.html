@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-    <title>Treasure Onwuchekwa</title>
+    <link rel="shortcut icon" href="stik.png" type="image/x-icon">
+    <title>Visual Artist — Treasure Onwuchekwa</title>
 </head>
 <body>
 
@@ -14,8 +14,10 @@
 
     
 <div class="menu">
-    <p>Menu</p>
+    <p> Info</p>
 </div>    
+
+
 
 <div class="loader">
     <div class="loaderimg">
@@ -38,7 +40,7 @@
 
     <div class="scroller" id="left">
         <div class="img img1 gim">
-            <img src="1.webp" draggable="false" srcset="">
+            <img src="12.webp" draggable="false" srcset="">
         </div>
 
         <div class="img img2 gim">
@@ -56,6 +58,10 @@
         </div>
     </div>
 
+
+<div class="atthebottom">
+    <p>Info</p>
+</div>
 </div>
 
 
@@ -63,7 +69,7 @@
 <div class="fixed smooth-scroll-wrapper">
     <div class="tobescrolled " >
     <div class="image image1">
-        <img src="1.webp" draggable="false" srcset="">
+        <img src="12.webp" draggable="false" srcset="">
     </div>
     <div class="image image2">
         <img src="2.webp"draggable="false"  alt="">
@@ -82,18 +88,6 @@
 </div>
 
 
-
-<div class="stable"></div>
-
-
-<div class="loadertxt">
- <div class="loadingtext">
-    <p class="sup">2</p>
-</div>
-</div>
-
-
-<div class="tint"></div>
 
 <script>
     (function() {
@@ -123,6 +117,33 @@
         smoothScroll();
     })();
 </script>
+
+
+<div class="stable"></div>
+
+
+<div class="loadertxt">
+ <div class="loadingtext">
+    <p class="sup">2</p>
+</div>
+
+<div class="othertext">
+    <p>A Collection of Selected Images</p>
+</div>
+
+<div class="barcode">
+
+    <?xml version="1.0" standalone="no"?>
+    <svg id="barcode" width="134px" height="54px" x="0px" y="0px" viewBox="0 0 234 104" xmlns="http://www.w3.org/2000/svg" version="1.1" style="transform: translate(0,0)"><rect x="0" y="0" width="134" height="54" style="fill: transparent;"></rect><g transform="translate(10, 0)" style="fill:#2b2b2b;"><text style="font: 18px nue" text-anchor="start" x="0" y="103">9</text></g><g transform="translate(34, 0)" style="fill:#2b2b2b;"><rect x="0" y="0" width="2" height="94"></rect><rect x="4" y="0" width="2" height="94"></rect><text style="font: 18px nue" text-anchor="middle" x="3" y="112"></text></g><g transform="translate(40, 0)" style="fill:#2b2b2b;"><rect x="2" y="0" width="6" height="85"></rect><rect x="10" y="0" width="4" height="85"></rect><rect x="20" y="0" width="2" height="85"></rect><rect x="26" y="0" width="2" height="85"></rect><rect x="30" y="0" width="2" height="85"></rect><rect x="36" y="0" width="6" height="85"></rect><rect x="48" y="0" width="4" height="85"></rect><rect x="54" y="0" width="2" height="85"></rect><rect x="58" y="0" width="2" height="85"></rect><rect x="64" y="0" width="6" height="85"></rect><rect x="76" y="0" width="4" height="85"></rect><rect x="82" y="0" width="2" height="85"></rect><text style="font: 18px nue" text-anchor="middle" x="42" y="103">780000</text></g><g transform="translate(124, 0)" style="fill:#2b2b2b;"><rect x="2" y="0" width="2" height="94"></rect><rect x="6" y="0" width="2" height="94"></rect><text style="font: 18px nue" text-anchor="middle" x="5" y="112"></text></g><g transform="translate(134, 0)" style="fill:#2b2b2b;"><rect x="0" y="0" width="6" height="85"></rect><rect x="10" y="0" width="2" height="85"></rect><rect x="14" y="0" width="6" height="85"></rect><rect x="24" y="0" width="2" height="85"></rect><rect x="28" y="0" width="6" height="85"></rect><rect x="38" y="0" width="2" height="85"></rect><rect x="42" y="0" width="6" height="85"></rect><rect x="52" y="0" width="2" height="85"></rect><rect x="56" y="0" width="6" height="85"></rect><rect x="66" y="0" width="2" height="85"></rect><rect x="70" y="0" width="4" height="85"></rect><rect x="76" y="0" width="4" height="85"></rect><text style="font: 18px nue" text-anchor="middle" x="42" y="103">000002</text></g><g transform="translate(218, 0)" style="fill:#2b2b2b;"><rect x="0" y="0" width="2" height="94"></rect><rect x="4" y="0" width="2" height="94"></rect><text style="font: 18px Arial, Helvetica" text-anchor="middle" x="3" y="112"></text></g></svg>
+
+</div>
+</div>
+
+
+
+
+<div class="tint"></div>
+
 
 
 
@@ -315,9 +336,13 @@
 
       .to(".loadingtext p", {
         duration: .5,
-         y: -100,
+
          ease: 'expo.Out',
       }, 0)
+
+      .to(".loadertxt", {
+        backgroundColor: "#2b2b2b",
+     }, 0)
 
       .to(".loadertxt", {
         duration: 0.7,
@@ -325,25 +350,22 @@
          clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 0)",
       }, 0.5)
 
-      .to(".loadingtext p", {
-        duration: .3,
-         opacity: 100,
-         ease: 'expo.Out',
-      }, 0)
+
 
 
 
       .to(".image1 img", {
         duration: 3.3,
-         opacity: 1,
+         opacity: 0.9,
+         scale: 1,
          ease: 'expo.Out',
-      }, .5)
+      }, 0)
 
       .to(".menu p", {
-        duration: 1.3,
+        duration: 2.2,
          y: 0,
-         ease: 'expo.Out',
-      }, .5)
+         ease: 'ease-out-cubic',
+      }, 2.5)
 
       .to(".gim", {
         duration: 3.3,
@@ -381,11 +403,6 @@
        opacity: 1,
     })
 
-    gsap.to(".image1 img", {
-        duration: 3.3,
-         opacity: 1,
-         ease: 'expo.Out',
-      }, 4.5)
 </script>
 
 
