@@ -1,3 +1,6 @@
+<!-- made with love by LUCIEN -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -362,9 +365,9 @@
       }, 0)
 
       .to(".menu p", {
-        duration: 2.2,
+        duration: 1.5,
          y: 0,
-         ease: 'ease-out-cubic',
+         ease: "power2.inOut" 
       }, 2.5)
 
       .to(".gim", {
@@ -479,14 +482,14 @@
 
             const containerRect = fixedContainer.getBoundingClientRect();
             const targetTop = containerRect.top + window.scrollY + 50; 
-            const targetLeft = containerRect.left + window.scrollX + 20; 
+            const targetLeft = containerRect.left + window.scrollX + 60; 
 
 
             tl.to(imgClone, {
                 top: `${targetTop}px`, 
                 left: `${targetLeft}px`,
-                height: '73vh', 
-                width: '77vh', 
+                height: '70vh', 
+                width: '78vh', 
                 ease: 'ease-out-cubic',
                 duration: 2.1,
             }, 0)

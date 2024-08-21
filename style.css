@@ -181,7 +181,7 @@ main{
   width: 420px;
   overflow: hidden;
   position: relative;
-  
+
 }
 
 .img img {
@@ -192,16 +192,16 @@ main{
   top: -64%;
   transform: translateY(-8%);
   transform-origin: center;
-
+ 
 }
 
 
 
-
- /* .img:hover{
-    height: 73vh;
-    width: 77vh;
-} */
+/* 
+  .img:hover{
+    height: 53vh;
+    
+}  */
 
 
 .menu{
@@ -213,7 +213,7 @@ main{
   filter: blur(0.2px);
   height: fit-content;
   font-size: 22px;
-  color: #cbcbcb;
+  color: #b5b5b5;
   mix-blend-mode: difference;
   overflow: hidden;
 }
@@ -229,7 +229,7 @@ main{
   filter: blur(0.2px);
   height: fit-content;
   font-size: 22px;
-  color: #cbcbcb;
+  color: #b5b5b5;
   mix-blend-mode: difference;
   overflow: hidden;
 }
@@ -512,6 +512,7 @@ body{
   overflow: hidden;
   color: #cbcbcb;
   mix-blend-mode: difference;
+  filter: blur(0.2px);
 }
 
 .imageside img{
@@ -534,6 +535,7 @@ body{
   top: 50%;
   transform: translate(-50%, -50%);
   font-size: 11rem;
+  line-height: 115%;
   color: #cbcbcb;
   mix-blend-mode: difference;
 }
@@ -565,9 +567,6 @@ body{
 }
 
 
-.paragraph{
-  margin-left: 20rem;
-}
 
 .text{
   font-size: 8rem;
@@ -599,8 +598,32 @@ body{
 }
 
 .picture img{
-  opacity: 0.8;
+  opacity: 0.7;
 }
+
+
+.containe__heading  .heading__line span {
+
+  display: inline-block;
+  transform: translateY(140%);
+  will-change: transform;
+  cursor:default;
+
+  filter: blur(0.2px);
+}
+
+ .heading__line {
+  display: block;
+  margin-bottom: .5rem;
+  overflow: hidden;
+}
+
+
+.paragraph{
+  
+  margin-left: 20rem;
+}
+
 
 @media (max-width: 600px) {
 

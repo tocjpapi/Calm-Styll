@@ -1,3 +1,6 @@
+<!-- made with love by LUCIEN -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +25,7 @@
 
       <div class="textside">
         <div class="groundtext">
-            <p>©COPYRIGHT ALL RIGHTS RESERVED</p>
+            <p>© ALL RIGHTS RESERVED</p>
         </div>
 
 
@@ -62,14 +65,16 @@
         <p>ELUID KIPCHOGE</p>
     </div>
     <div class="text">
-    <p><span class="paragraph"></span>Nike Aura is a Little
-        Exploration based on Nike Apparel,
-         sports wears and functional
-        products designed and hand
-        crafted by the Sweat Shop
-        <br>
-
-   </div>
+        <p class="containe__heading">
+          <span class="heading__line"><span class="paragraph"></span> <span>Nike Aura is a Little</span></span>
+          <span class="heading__line"><span>Exploration based on Nike</span></span>
+          <span class="heading__line"><span>Apparel, sportswear, and</span></span>
+          <span class="heading__line"><span>functional products designed</span></span>
+          <span class="heading__line"><span>and handcrafted by the</span></span>
+          <span class="heading__line"><span>Sweat Shop</span></span>
+        </p>
+      </div>
+      
 
 
   </div>
@@ -225,7 +230,26 @@
 </script>
 
 
-
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+    
+    
+    document.querySelectorAll('.containe__heading').forEach(container => {
+    
+      gsap.to(container.querySelectorAll('.heading__line span'), {
+        y: "0",
+        filter: "blur(0px)",
+        stagger: 0.1,
+            duration: 2,
+            ease: "expo.out",
+        scrollTrigger: {
+          trigger: container,
+          start: "top 80%", 
+          toggleActions: "play none none none", 
+        }
+      });
+    });
+    </script>
 
 <script>
 const container = document.querySelector('.grandtext');
