@@ -133,9 +133,10 @@ main{
 
 .othertext{
   position: absolute;
-  top: 30px;
+  bottom: 60px;
+  text-transform: uppercase;
+  font-size: 13px;
   opacity: 0;
-  left: 30px;
 }
 
 
@@ -193,6 +194,48 @@ main{
   transform: translateY(-8%);
   transform-origin: center;
  
+}
+
+
+
+.workbig{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 999999;
+}
+
+
+.stickyboss{
+  height: fit-content;
+  width: 100vw;
+  position: relative;
+}
+
+
+.bigcentretext{
+  font-size: 11rem;
+  color: #cbcbcb;
+  mix-blend-mode: difference;
+
+  pointer-events: none;
+}
+
+
+.dojustice{
+  overflow: hidden;
+  pointer-events: none;
+}
+
+
+.dojustice p{
+  transform: translateY(100%);
 }
 
 
@@ -288,7 +331,7 @@ body{
   overflow: hidden;
   opacity: 0;
 
-  font-size: 70px;
+  font-size: 2.5rem;
 }
 
 .opacity{
@@ -300,20 +343,27 @@ body{
 
 
 .closee{
-  height: 20px;
+  height: 30px;
   overflow: hidden;
   line-height: 20px;
-  clip-path: polygon(0 0,100% 0,100% 30px, 0 30px);
+  clip-path: polygon(0 0,100% 0, 100% 70px, 0 70px);
+  font-size: 9rem;
 }
 
 
 .supe{
   font-size: 12px;
   display: inline-block;
-  transform: translateY(0%);
+  transform: translateY(-25px);
   margin-left: 3px;
   transition: transform 0.3s ease;
-  opacity: 0.5;
+  animation: upandstuck 1s ease;
+}
+
+@keyframes upandstuck {
+  to{
+    transform: translateY(-500%);
+  }
 }
 
 .serif{
@@ -432,6 +482,7 @@ body{
 .image1 img{
   clip-path: inset( 0 0 0 0 );
   scale: 1.05;
+  opacity: 0.7;
 }
 
 
@@ -540,6 +591,10 @@ body{
   mix-blend-mode: difference;
 }
 
+.nike{
+  cursor: pointer;
+}
+
 
 .grandtext p{
   text-align: center;
@@ -552,6 +607,8 @@ body{
   width: 100vw;
   position: relative;
 }
+
+
 
 .textcase{
   position: absolute;
@@ -624,6 +681,158 @@ body{
   margin-left: 20rem;
 }
 
+
+.nike1{
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+
+}
+
+
+
+.nike2{
+  height: 70vh;
+  width: 100vw;
+  position: relative;
+
+}
+
+.nike3{
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+
+}
+
+
+
+.nike1img{
+  height: 100vh;
+  width: 62rem;
+  background: #000;
+  position: absolute;
+  right: 100px;
+
+}
+
+
+
+
+.nike2img{
+  height: 70vh;
+  width: 55rem;
+  background: #000;
+  position: absolute;
+  left: 60px;
+  top: -20vh;
+}
+
+.nike3img{
+  height: 90vh;
+  width: 55rem;
+  background: #000;
+  position: absolute;
+  left: 25%;
+}
+
+
+.more{
+  height: 120vh;
+  width: 100vw;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.itsover{
+  height: fit-content;
+  width: 100vw;
+}
+
+
+.over2{
+  height: 200vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overtext{
+  width: 100vw;
+  height: 100vh;
+  font-size: 11rem;
+  line-height: 115%;
+
+  text-align: center;
+  position: sticky;
+  left: 0%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+}
+
+.for1{
+  position: absolute;
+  color: #cbcbcb;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+
+.overimage{
+  width: 100vw;
+  height: 100vh;
+  position: sticky;
+  left: 0%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.overimg{
+  height: 40vh;
+  width: 420px;
+  background: #000;
+  position: absolute;
+  z-index: -9999999;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+
+.overimg img{
+  height: 164%;
+  width: 150%;
+  position: absolute;
+  left: -30%;
+  top: -64%;
+
+}
+
+.miniparagraph{
+  margin-left: 9rem;
+}
+
+.other-right-text{
+  position: absolute;
+  font-size: 1.6rem;
+  left: -10rem;
+  opacity: 0.5;
+}
+
+.rightmore{
+  position: absolute;
+  right: 60px;
+  width: 35rem;
+  font-size: 27px;
+  line-height: 175%;
+}
 
 @media (max-width: 600px) {
 

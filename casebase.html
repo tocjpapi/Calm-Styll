@@ -20,7 +20,7 @@
 
 
       <div class="imageside">
-        <img src="12.webp" alt="" srcset="">
+        <img src="12.webp" alt="" draggable="false" srcset="">
       </div>
 
       <div class="textside">
@@ -58,7 +58,7 @@
   <div class="textcase">
     <div class="picture">
         
-       <img src="https://www.wanarun.net/blog/wp-content/uploads/2018/04/nike-zoom-vaporfly-elite-londres-prete.jpg" alt="" srcset="">
+       <img src="https://www.wanarun.net/blog/wp-content/uploads/2018/04/nike-zoom-vaporfly-elite-londres-prete.jpg" alt="" draggable="false" srcset="">
     </div>
 
     <div class="labelg">
@@ -81,8 +81,75 @@
 </div>
 
 <div class="spacer"></div>
+<div class="stickyboss">
+  <div class="workbig">
+    <div class="bigcentretext">
+    <div class="dojustice">
+        <p>Editorial <span style="font-size: 15rem;"><sup style="font-size: small; ">3</sup></span></p>
+    </div>
+    </div>
 
-<div class="next"></div>
+   
+  </div>
+
+
+  
+  <div class="nike1 nike">
+    <div class="nike1img imgur">
+        <img src="https://sebastienmichelini.com/content/projects/35-nike-psg/sebastien-michelini-nike-psg-02.jpg" alt="">
+    </div>
+
+
+  </div>
+
+
+  <div class="nike2 nike">
+    <div class="nike2img imgur">
+      <img src="https://sebastienmichelini.com/content/projects/35-nike-psg/sebastien-michelini-nike-psg-11.jpg" alt="">
+    </div>
+  </div>
+
+  <div class="nike3 nike">
+    <div class="nike3img imgur">
+      <img src="https://sebastienmichelini.com/content/projects/35-nike-psg/sebastien-michelini-nike-psg-jordan-13.jpg" alt="">
+    </div>
+  </div>
+
+
+  
+
+</div>
+
+<div class="more">
+
+     <div class="rightmore">
+        <div class="other-right-text">
+            <p>AUT:</p>
+        </div>
+        <p><span class="miniparagraph"></span>I was drawn unto this project by my love for Nike Apparel. The art direction of Nike has a really cool aestheatic that I really love. In this project, my aim was to make something similar to what Nike might do. The creative challenge for this project was to portray Nike's aestheatic in a yet acceptable but different way. </p>
+     </div>
+</div>
+
+
+<div class="itsover">
+    <div class="overtext">
+        <div class="overimg">
+            <img src="2.webp" alt="" srcset="">
+        </div>
+    
+     <div class="for1">
+        <p>GRAYSCALE <span class="closee"><sup class="supe">0</sup> </span><br> 2024</p>
+    </div>
+
+
+
+    </div>
+
+
+
+
+    <div class="over2"></div>
+</div>
 
 
     <div class="tint"></div>
@@ -94,6 +161,8 @@
 <script src="ScrollTrigger.js"></script>
 <script src="lenis.js"></script>
 <script src="CustomEase.js"></script>
+
+
 
 <script>
 
@@ -244,7 +313,7 @@
             ease: "expo.out",
         scrollTrigger: {
           trigger: container,
-          start: "top 80%", 
+          start: "top bottom", 
           toggleActions: "play none none none", 
         }
       });
@@ -269,8 +338,8 @@ gsap.to(container.querySelectorAll('.heading__line span'), {
     const tl = gsap.timeline({
         scrollTrigger: {
             trigger: container,
-            start: "top 20%",  // Adjusted to start earlier
-            end: "bottom 50%", // Adjusted to end earlier
+            start: "top 20%", 
+            end: "bottom 50%",
             scrub: 3, 
             ease: "power2.inOut"  
         }
@@ -329,6 +398,48 @@ gsap.to('.picture', {
     
     
     </script>
+
+
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.to(".dojustice p", {
+      y: "0%",
+      ease: "expo.out",
+      duration: 2, 
+      scrollTrigger: {
+        trigger: ".dojustice",
+        start: "top 70%", 
+        toggleActions: "play none none none", 
+
+      },
+    });
+</script>
+
+
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const supe = document.querySelector(".supe");
+
+    gsap.to(".overimg", {
+      scrollTrigger: {
+        trigger: ".itsover",
+        start: "top top",
+        end: "center .over2",
+        scrub: 3.5,
+        ease: "power2.inOut",
+        onUpdate: (self) => {
+
+          const progress = Math.round(self.progress * 100);
+
+          supe.textContent = progress  ;
+        },
+      },
+      height: "70vh",
+    });
+</script>
+
     
 </body>
 </html>

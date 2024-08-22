@@ -131,7 +131,7 @@
 </div>
 
 <div class="othertext">
-    <p>A Collection of Selected Images</p>
+    <p>I don't claim any of the Images used</p>
 </div>
 
 <div class="barcode">
@@ -176,7 +176,6 @@
         smooth: true,
         smoothTouch: false,
         touchMultiplier: 1,
-
         infinite: false,
     });
     
@@ -339,9 +338,16 @@
 
       .to(".loadingtext p", {
         duration: .5,
-
+        opacity: 0,
          ease: 'expo.Out',
       }, 0)
+
+      .to(".barcode", {
+        duration: .5,
+        opacity: 0,
+         ease: 'expo.Out',
+      }, 0)
+
 
       .to(".loadertxt", {
         backgroundColor: "#2b2b2b",
@@ -412,18 +418,14 @@
 
 
 
-
-
-
 <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    let Animating = false;
-
+function applyParallaxEffect() {
     document.querySelectorAll('.img img').forEach((project, index) => {
-        let speed = 0.25; 
+        let speed = 0.25; // Adjust this value for desired speed
 
-
+        // Apply parallax effect
         gsap.to(project, {
             y: () => {
                 let scrollPosition = window.pageYOffset;
@@ -432,7 +434,7 @@
             ease: "none",
             scrollTrigger: {
                 trigger: project.closest('.img'),
-                start: index < 1 ? "top 90%" : "top bottom", 
+                start: index < 1 ? "top 90%" : "top bottom", // Adjust start for the first two images
                 end: "bottom top",
                 scrub: true,
                 onUpdate: (self) => {
@@ -440,68 +442,95 @@
                 }
             }
         });
+    });
+}
+
+// Call the function to apply parallax
+applyParallaxEffect();
+
+</script>
 
 
+
+
+
+
+
+
+
+
+
+
+<!-- <script>
+    let Animating = false; // Flag to track animation status
+
+function handleClickEvents() {
+    document.querySelectorAll('.img img').forEach((project) => {
         project.closest('.img').addEventListener('click', () => {
-            if (Animating) return;
-            Animating = true; 
+            if (Animating) return; // Prevent the effect if already animating
+            Animating = true; // Set the flag to true
 
             const fixedContainer = document.querySelector('.stable');
             const tl = gsap.timeline();
 
-      
+            // Clone the clicked image container
             const imgClone = project.closest('.img').cloneNode(true);
             const projectClone = imgClone.querySelector('img');
 
-
+            // Get the bounding rectangle and transform of the original image container
             const rect = project.closest('.img').getBoundingClientRect();
             const computedStyle = window.getComputedStyle(project);
             const transformMatrix = computedStyle.transform;
 
-
+            // Set the style for the cloned image container
             imgClone.style.position = 'absolute';
             imgClone.style.top = `${rect.top + window.scrollY}px`;
             imgClone.style.left = `${rect.left + window.scrollX}px`;
             imgClone.style.width = `${rect.width}px`;
             imgClone.style.height = `${rect.height}px`;
-            imgClone.style.margin = 0;
-            imgClone.style.padding = 0; 
+            imgClone.style.margin = 0; // Ensure no margin interferes
+            imgClone.style.padding = 0; // Ensure no padding interferes
             imgClone.style.zIndex = 100;
-            imgClone.style.opacity = 0; 
+            imgClone.style.opacity = 0; // Start with opacity 0 for a seamless transition
 
-
+            // Apply the exact same transform to the clone
             projectClone.style.transform = transformMatrix;
 
-
+            // Append the cloned image container to the body
             document.body.appendChild(imgClone);
 
-
+            // Hide the original image container and immediately set clone's opacity to 1
             gsap.set(project.closest('.img'), { visibility: 'hidden' });
-            gsap.to(imgClone, { opacity: 1, duration: 0 }); 
+            gsap.to(imgClone, { opacity: 1, duration: 0 }); // Ensure no visible flicker
 
-
+            // Calculate the target position within the fixed container
             const containerRect = fixedContainer.getBoundingClientRect();
-            const targetTop = containerRect.top + window.scrollY + 50; 
-            const targetLeft = containerRect.left + window.scrollX + 60; 
+            const targetTop = containerRect.top + window.scrollY + 50; // Adjust as needed
+            const targetLeft = containerRect.left + window.scrollX + 20; // Adjust as needed
 
-
+            // Create a timeline for the clone
             tl.to(imgClone, {
-                top: `${targetTop}px`, 
-                left: `${targetLeft}px`,
-                height: '70vh', 
-                width: '78vh', 
+                top: `${targetTop}px`, // Move to target top position
+                left: `${targetLeft}px`, // Move to target left position
+                height: '73vh', // Adjust as needed
+                width: '77vh', // Adjust as needed
                 ease: 'ease-out-cubic',
                 duration: 2.1,
+                onUpdate: () => {
+                    projectClone.style.transform = transformMatrix; // Ensure clone retains the exact parallax effect
+                }
             }, 0)
             .to(projectClone, {
-                yPercent: 8, 
+                yPercent: 8, // Move to target top position
                 ease: 'ease-out-cubic',
                 duration: 2.1,
             }, 0);
 
+            // Function to handle scroll and reanimate the cloned image container back to the original position
             const handleScroll = () => {
                 const originalRect = project.closest('.img').getBoundingClientRect();
 
+                // Ensure clone animates back to the original image container's position
                 gsap.to(imgClone, {
                     top: `${originalRect.top + window.scrollY}px`,
                     left: `${originalRect.left + window.scrollX}px`,
@@ -519,7 +548,7 @@
                             Math.abs(cloneRect.width - originalRect.width) < 0.5 &&
                             Math.abs(cloneRect.height - originalRect.height) < 0.5
                         ) {
-      
+                            // Snap the clone into place
                             gsap.set(imgClone, {
                                 top: `${originalRect.top + window.scrollY}px`,
                                 left: `${originalRect.left + window.scrollX}px`,
@@ -527,27 +556,33 @@
                                 width: `${originalRect.width}px`,
                             });
 
+                            // Reset yPercent to 0 on the cloned project
                             gsap.to(projectClone, { 
                                yPercent: 0, 
                                duration: 2.1,
                                ease: 'ease-out-cubic',
                             });
 
-
+                            // Remove the cloned image container and restore the original
                             imgClone.remove();
                             gsap.set(project.closest('.img'), { visibility: 'visible' });
                             lenis.off('scroll', handleScroll);
-                            Animating = false; 
+                            Animating = false; // Reset the flag when animation is done
                         }
                     }
                 });
             };
 
-
+            // Attach the scroll event handler
             lenis.on('scroll', handleScroll);
         });
     });
-</script>
+}
+
+handleClickEvents();
+
+</script> -->
+
 
 
 
