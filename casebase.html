@@ -96,7 +96,20 @@
   
   <div class="nike1 nike">
     <div class="nike1img imgur">
+     <div class="cross">
+        <p>✛</p>
+     </div>
         <img src="https://sebastienmichelini.com/content/projects/35-nike-psg/sebastien-michelini-nike-psg-02.jpg" alt="">
+        <div class="textatbottom">
+            <div class="pointer1">
+              <p>NIKE PSG X JORDAN</p>
+          </div>
+          
+          <div class="pointer1">
+            <p>PAR SÉBASTIEN MICHELINI</p>
+        </div>
+        
+          </div>
     </div>
 
 
@@ -105,13 +118,40 @@
 
   <div class="nike2 nike">
     <div class="nike2img imgur">
+        <div class="cross">
+            <p>✛</p>
+         </div>
       <img src="https://sebastienmichelini.com/content/projects/35-nike-psg/sebastien-michelini-nike-psg-11.jpg" alt="">
+
+      <div class="textatbottom">
+        <div class="pointer1">
+          <p>NIKE PSG X JORDAN</p>
+      </div>
+
+      <div class="pointer1">
+        <p>PAR SÉBASTIEN MICHELINI</p>
+    </div>
+    
+      </div>
     </div>
   </div>
 
   <div class="nike3 nike">
     <div class="nike3img imgur">
+        <div class="cross">
+            <p>✛</p>
+         </div>
       <img src="https://sebastienmichelini.com/content/projects/35-nike-psg/sebastien-michelini-nike-psg-jordan-13.jpg" alt="">
+      <div class="textatbottom">
+        <div class="pointer1">
+          <p>NIKE PSG X JORDAN</p>
+      </div>
+      
+      <div class="pointer1">
+        <p>PAR SÉBASTIEN MICHELINI</p>
+    </div>
+    
+      </div>
     </div>
   </div>
 
@@ -126,7 +166,7 @@
         <div class="other-right-text">
             <p>AUT:</p>
         </div>
-        <p><span class="miniparagraph"></span>I was drawn unto this project by my love for Nike Apparel. The art direction of Nike has a really cool aestheatic that I really love. In this project, my aim was to make something similar to what Nike might do. The creative challenge for this project was to portray Nike's aestheatic in a yet acceptable but different way. </p>
+        <p><span class="miniparagraph"></span>I was drawn unto this project by my love for Nike Apparel. The art direction of Nike has a really cool aestheatic that I just love. In this project, my aim was to make something similar to what Nike might do. The creative challenge for this project was to portray Nike's aestheatic in a yet acceptable but different way. </p>
      </div>
 </div>
 
@@ -138,7 +178,16 @@
         </div>
     
      <div class="for1">
-        <p>GRAYSCALE <span class="closee"><sup class="supe">0</sup> </span><br> 2024</p>
+        <p class="contain__heading ">
+            <span  class="heading__line">
+               <span> GRAYSCALE <sup class="supe"></sup> </span>
+            </span>
+    
+            <span  class="heading__line">
+               <span> 2023</span>
+            </span>
+    
+        </p>
     </div>
 
 
@@ -304,6 +353,27 @@
     
     
     document.querySelectorAll('.containe__heading').forEach(container => {
+    
+      gsap.to(container.querySelectorAll('.heading__line span'), {
+        y: "0",
+        filter: "blur(0px)",
+        stagger: 0.1,
+            duration: 2,
+            ease: "expo.out",
+        scrollTrigger: {
+          trigger: container,
+          start: "top bottom", 
+          toggleActions: "play none none none", 
+        }
+      });
+    });
+    </script>
+
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+    
+    
+    document.querySelectorAll('.contain__heading').forEach(container => {
     
       gsap.to(container.querySelectorAll('.heading__line span'), {
         y: "0",

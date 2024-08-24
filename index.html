@@ -17,7 +17,7 @@
 
     
 <div class="menu">
-    <p> Info</p>
+    <p>Info</p>
 </div>    
 
 
@@ -371,10 +371,12 @@
       }, 0)
 
       .to(".menu p", {
-        duration: 1.5,
+        duration: 3.3,
          y: 0,
-         ease: "power2.inOut" 
-      }, 2.5)
+         ease: 'expo.inOut',
+      }, 0.85)
+
+
 
       .to(".gim", {
         duration: 3.3,
@@ -396,7 +398,7 @@
                 clearInterval(interval);
                 tl.play(); 
             }
-        }, 70); 
+        }, 0); 
     }
 
 
@@ -453,9 +455,80 @@ applyParallaxEffect();
 
 
 
-
-
-
+<script>
+    document.querySelectorAll('.img').forEach(img => {
+        img.addEventListener('click', function(event) {
+            event.stopPropagation();
+    
+            // Get the image position and dimensions relative to the viewport
+            const rect = this.getBoundingClientRect();
+    
+            // Create an invisible clone to replace the original in the scroller
+            const clone = this.cloneNode(true);
+            clone.style.visibility = 'hidden';
+            this.parentNode.insertBefore(clone, this);
+    
+            // Set the original image's position to be fixed relative to the viewport
+            gsap.set(this, {
+                position: "fixed",
+                top: rect.top,
+                left: rect.left,
+                width: rect.width,
+                height: rect.height,
+                zIndex: 1000
+            });
+    
+            // Animate the original image to the top-left of the page with new dimensions
+            gsap.to(this, {
+                duration: 1.9,
+                top: '50px',
+                left: '60px',
+                height: '73vh',
+                width: '77vh',
+                ease: "ease-out-cubic"
+            });
+    
+            // Add a flag to indicate the image is currently active
+            this.classList.add('active');
+        });
+    });
+    
+    document.addEventListener('click', function(event) {
+        const activeImg = document.querySelector('.img.active');
+        if (activeImg && !event.target.closest('.img')) {
+            const clone = activeImg.previousElementSibling;
+            const cloneRect = clone.getBoundingClientRect();
+    
+            // Animate the image back to the clone's original position
+            gsap.to(activeImg, {
+                duration: 1.5,
+                top: cloneRect.top,
+                left: cloneRect.left,
+                width: cloneRect.width,
+                height: cloneRect.height,
+                ease: "ease-out-cubic",
+                onComplete: function() {
+                    // Remove the fixed positioning and reset styles
+                    gsap.set(activeImg, {
+                        position: "",
+                        top: "",
+                        left: "",
+                        width: "",
+                        height: "",
+                        zIndex: ""
+                    });
+    
+                    // Remove the clone
+                    clone.remove();
+    
+                    // Remove the active class
+                    activeImg.classList.remove('active');
+                }
+            });
+        }
+    });
+    </script>
+    
 
 
 

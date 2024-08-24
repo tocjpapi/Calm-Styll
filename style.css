@@ -160,6 +160,16 @@ main{
     position: relative;
 }
 
+
+.img {
+  height: 40vh;
+  width: 420px;
+  overflow: hidden;
+  position: relative;
+
+}
+
+
 .nav{
 
   display: flex;
@@ -175,14 +185,6 @@ main{
 
 .item2{
   opacity: 0.5;
-}
-
-.img {
-  height: 40vh;
-  width: 420px;
-  overflow: hidden;
-  position: relative;
-
 }
 
 .img img {
@@ -259,6 +261,7 @@ main{
   color: #b5b5b5;
   mix-blend-mode: difference;
   overflow: hidden;
+
 }
 
 
@@ -275,21 +278,21 @@ main{
   color: #b5b5b5;
   mix-blend-mode: difference;
   overflow: hidden;
+
 }
 
 
 
 .loadingtext {
   overflow: hidden;
-   opacity: 0.7;
+  opacity: 0;
 }
 
 
 
-/* 
-body{
+/* body{
   position: fixed;
-  animation: scroll 4s forwards;
+  animation: scroll 1s forwards;
   pointer-events: none;
 }  */
 
@@ -576,7 +579,11 @@ body{
 }
 
 .menu p{
-  transform: translateY(-100%);
+  transform: translateY(100%);
+}
+
+.menu span{
+  opacity: 0;
 }
 
 .grandtext{
@@ -589,6 +596,7 @@ body{
   line-height: 115%;
   color: #cbcbcb;
   mix-blend-mode: difference;
+
 }
 
 .nike{
@@ -660,14 +668,22 @@ body{
 
 
 .containe__heading  .heading__line span {
-
   display: inline-block;
   transform: translateY(140%);
   will-change: transform;
   cursor:default;
-
   filter: blur(0.2px);
 }
+
+
+.contain__heading  .heading__line span {
+  display: inline-block;
+  transform: translateY(140%);
+  will-change: transform;
+  cursor:default;
+  filter: blur(0.2px);
+}
+
 
  .heading__line {
   display: block;
@@ -705,33 +721,68 @@ body{
 
 }
 
+.imgur img{
+  transition: opacity 0.3s;
+}
 
+.imgur:hover img{
+  opacity: 0;
+}
+
+.imgur:hover{
+  border: 1px solid #2b2b2b;
+}
+
+
+
+
+.imgur{
+  transition: border 0.1s;
+}
+
+.imgur:hover .cross {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.cross {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  font-size: 5rem;
+  z-index: -1;
+  opacity: 0;
+  font-weight: 100;
+  transition: transform 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.3s ease;
+  transform-origin: center;
+}
 
 .nike1img{
-  height: 100vh;
+  height: calc(100vh - 20px);
   width: 62rem;
-  background: #000;
+
   position: absolute;
   right: 100px;
-
+  
 }
 
 
 
 
 .nike2img{
-  height: 70vh;
+  height: calc(70vh - 20px);
   width: 55rem;
-  background: #000;
+
   position: absolute;
   left: 60px;
   top: -20vh;
 }
 
 .nike3img{
-  height: 90vh;
+  height: calc(90vh - 20px);
   width: 55rem;
-  background: #000;
+
   position: absolute;
   left: 25%;
 }
@@ -829,9 +880,17 @@ body{
 .rightmore{
   position: absolute;
   right: 60px;
-  width: 35rem;
+  width: 37rem;
   font-size: 27px;
   line-height: 175%;
+}
+
+
+.textatbottom{
+  font-size: 12px;
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
 }
 
 @media (max-width: 600px) {
