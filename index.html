@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="stik.png" type="image/x-icon">
     <title>Visual Artist — Treasure Onwuchekwa</title>
@@ -16,7 +16,7 @@
 
 
     
-<div class="menu">
+<div class="menu desktop">
     <p>Info</p>
 </div>    
 
@@ -41,7 +41,7 @@
 
 <div class="collection">
 
-    <div class="scroller" id="left">
+    <div class="scroller desktop" id="left">
         <div class="img img1 gim">
             <img src="12.webp" draggable="false" srcset="">
         </div>
@@ -62,14 +62,14 @@
     </div>
 
 
-<div class="atthebottom">
+<div class="atthebottom desktop">
     <p>Info</p>
 </div>
 </div>
 
 
 
-<div class="fixed smooth-scroll-wrapper">
+<div class="fixed smooth-scroll-wrapper desktop">
     <div class="tobescrolled " >
     <div class="image image1">
         <img src="12.webp" draggable="false" srcset="">
@@ -125,7 +125,9 @@
 <div class="stable"></div>
 
 
-<div class="loadertxt">
+<div class="loadertxt desktop">
+    <div class="centre"><p>LUCIÉN</p></div>
+    <div class="centre2"><p>Visual Artist</p></div>
  <div class="loadingtext">
     <p class="sup">2</p>
 </div>
@@ -134,12 +136,7 @@
     <p>I don't claim any of the Images used</p>
 </div>
 
-<div class="barcode">
 
-    <?xml version="1.0" standalone="no"?>
-    <svg id="barcode" width="134px" height="54px" x="0px" y="0px" viewBox="0 0 234 104" xmlns="http://www.w3.org/2000/svg" version="1.1" style="transform: translate(0,0)"><rect x="0" y="0" width="134" height="54" style="fill: transparent;"></rect><g transform="translate(10, 0)" style="fill:#2b2b2b;"><text style="font: 18px nue" text-anchor="start" x="0" y="103">9</text></g><g transform="translate(34, 0)" style="fill:#2b2b2b;"><rect x="0" y="0" width="2" height="94"></rect><rect x="4" y="0" width="2" height="94"></rect><text style="font: 18px nue" text-anchor="middle" x="3" y="112"></text></g><g transform="translate(40, 0)" style="fill:#2b2b2b;"><rect x="2" y="0" width="6" height="85"></rect><rect x="10" y="0" width="4" height="85"></rect><rect x="20" y="0" width="2" height="85"></rect><rect x="26" y="0" width="2" height="85"></rect><rect x="30" y="0" width="2" height="85"></rect><rect x="36" y="0" width="6" height="85"></rect><rect x="48" y="0" width="4" height="85"></rect><rect x="54" y="0" width="2" height="85"></rect><rect x="58" y="0" width="2" height="85"></rect><rect x="64" y="0" width="6" height="85"></rect><rect x="76" y="0" width="4" height="85"></rect><rect x="82" y="0" width="2" height="85"></rect><text style="font: 18px nue" text-anchor="middle" x="42" y="103">780000</text></g><g transform="translate(124, 0)" style="fill:#2b2b2b;"><rect x="2" y="0" width="2" height="94"></rect><rect x="6" y="0" width="2" height="94"></rect><text style="font: 18px nue" text-anchor="middle" x="5" y="112"></text></g><g transform="translate(134, 0)" style="fill:#2b2b2b;"><rect x="0" y="0" width="6" height="85"></rect><rect x="10" y="0" width="2" height="85"></rect><rect x="14" y="0" width="6" height="85"></rect><rect x="24" y="0" width="2" height="85"></rect><rect x="28" y="0" width="6" height="85"></rect><rect x="38" y="0" width="2" height="85"></rect><rect x="42" y="0" width="6" height="85"></rect><rect x="52" y="0" width="2" height="85"></rect><rect x="56" y="0" width="6" height="85"></rect><rect x="66" y="0" width="2" height="85"></rect><rect x="70" y="0" width="4" height="85"></rect><rect x="76" y="0" width="4" height="85"></rect><text style="font: 18px nue" text-anchor="middle" x="42" y="103">000002</text></g><g transform="translate(218, 0)" style="fill:#2b2b2b;"><rect x="0" y="0" width="2" height="94"></rect><rect x="4" y="0" width="2" height="94"></rect><text style="font: 18px Arial, Helvetica" text-anchor="middle" x="3" y="112"></text></g></svg>
-
-</div>
 </div>
 
 
@@ -176,6 +173,7 @@
         smooth: true,
         smoothTouch: false,
         touchMultiplier: 1,
+
         infinite: false,
     });
     
@@ -195,7 +193,7 @@
     let isAnimating = false;
     let clickDisabled = false;
     const friction = 0;
-    const dragSensitivity = 1.1;
+    const dragSensitivity = 1.2;
     
     function clampScroll(scrollY) {
         const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
@@ -252,8 +250,16 @@
             animateScroll();
         } else if (event.key === 'ArrowDown') {
             targetScrollY = clampScroll(lenis.scroll + scrollAmount);
+            animateScroll();       
+        } else if (event.key === 'ArrowLeft') {
+            targetScrollY = clampScroll(lenis.scroll - scrollAmount);
             animateScroll();
-        } else if (event.key === ' ') {
+        } else if (event.key === 'ArrowRight') {
+            targetScrollY = clampScroll(lenis.scroll + scrollAmount);
+            animateScroll();
+        }
+        
+        else if (event.key === ' ') {
             event.preventDefault(); 
             targetScrollY = clampScroll(lenis.scroll + window.innerHeight);
             animateScroll();
@@ -323,6 +329,8 @@
 
 
     CustomEase.create("ease-out-cubic", "0.15, 1, 0.1, 1");
+    CustomEase.create("ease-out-soft", "0.15, 1, 0.1, 1");
+
 
     const tl = gsap.timeline({ paused: true });  
 
@@ -330,9 +338,9 @@
           duration: 3.3,
           scale: 1,
           y: '20vh',
-          stagger: 0.12,
+          stagger: 0.07,
           ease: 'expo.inOut',
-      }, .5)
+      }, .7)
 
 
 
@@ -342,21 +350,33 @@
          ease: 'expo.Out',
       }, 0)
 
-      .to(".barcode", {
-        duration: .5,
-        opacity: 0,
-         ease: 'expo.Out',
-      }, 0)
 
 
-      .to(".loadertxt", {
-        backgroundColor: "#2b2b2b",
-     }, 0)
+
+    //    .to(".loadertxt", {
+    //      duration: 1.9,
+    //      ease: 'expo.inOut',
+    //      backgroundColor: "#000",
+    //   }, 0.8)
 
       .to(".loadertxt", {
-        duration: 0.7,
+        duration: 2.2,
+        ease: 'expo.inOut',
+          opacity: 0,
+        //  clipPath: "polygon(0 0%, 100% 0%, 100% 0%, 0 0%)",
+      }, 1)
+
+
+      .to(".centre p", {
+        duration: 2.2,
          opacity: 0,
-         clipPath: "polygon(0 100%, 100% 100%, 100% 0, 0 0)",
+         ease: 'expo.inOut',
+      }, 0.5)
+
+      .to(".centre2 p", {
+        duration: 2.2,
+        opacity: 0,
+        ease: 'expo.inOut',
       }, 0.5)
 
 
@@ -364,17 +384,21 @@
 
 
       .to(".image1 img", {
-        duration: 3.3,
+        duration: 3,
          opacity: 0.9,
          scale: 1,
-         ease: 'expo.Out',
-      }, 0)
+         ease: 'power2.inOut',
+      }, 1)
+
+
 
       .to(".menu p", {
         duration: 3.3,
          y: 0,
          ease: 'expo.inOut',
-      }, 0.85)
+      }, 0.9)
+
+
 
 
 
@@ -383,7 +407,7 @@
         opacity: 1,
         ease: 'expo.inOut',
         stagger: 0.12,
-      }, .5)
+      }, 0.7)
 
 
     function incrementSup() {
@@ -391,7 +415,7 @@
         let count = parseInt(sup.textContent);
 
         const interval = setInterval(() => {
-            if (count < 100) {
+            if (count < 69) {
                 count++;
                 sup.textContent = count;
             } else {
@@ -410,9 +434,17 @@
 
 
 <script>
-    gsap.to('.loadingtext',{
+    gsap.to('.centre',{
        opacity: 1,
-    })
+       duration: 1.2,
+
+    },0)
+
+    gsap.to('.centre2',{
+       opacity: 1,
+       duration: 1.2,
+
+    },0)
 
 </script>
 
@@ -475,16 +507,16 @@ applyParallaxEffect();
                 left: rect.left,
                 width: rect.width,
                 height: rect.height,
-                zIndex: 1000
+                zIndex: 1
             });
     
             // Animate the original image to the top-left of the page with new dimensions
             gsap.to(this, {
                 duration: 1.9,
                 top: '50px',
-                left: '60px',
-                height: '73vh',
-                width: '77vh',
+                left: '6rem',
+                height: '83vh',
+                width: '90vh',
                 ease: "ease-out-cubic"
             });
     
@@ -528,6 +560,7 @@ applyParallaxEffect();
         }
     });
     </script>
+    
     
 
 
@@ -662,7 +695,19 @@ handleClickEvents();
 
 
 
+<script>
+    document.addEventListener('wheel', function(event) {
+        if (event.ctrlKey) {
+            event.preventDefault();
+        }
+    }, { passive: false });
 
+    document.addEventListener('touchmove', function(event) {
+        if (event.scale !== 1) {
+            event.preventDefault();
+        }
+    }, { passive: false });
+</script>
 
 
 <script>

@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: 'grand';
-    src: url('Respira-Black.42d5d5f.woff2') format('woff2');
+    src: url('inferi-italic-variable-wght.woff2') format('woff2');
 }
 
 
@@ -45,7 +45,7 @@ html.lenis, html.lenis body {
 
 
 :root {
-  --bg: #e8e8e8; 
+  --bg: #ededed; 
   --text:  #1d1d1d;
 }
 
@@ -163,7 +163,8 @@ main{
 
 .img {
   height: 40vh;
-  width: 420px;
+   width: 57.5vh; 
+  /* width: 420px; */
   overflow: hidden;
   position: relative;
 
@@ -195,7 +196,7 @@ main{
   top: -64%;
   transform: translateY(-8%);
   transform-origin: center;
- 
+
 }
 
 
@@ -255,13 +256,28 @@ main{
   right: 60px;
   top: 50px;
   z-index: 999999;
-  filter: blur(0.2px);
+  filter: blur(0.1px);
   height: fit-content;
-  font-size: 22px;
-  color: #b5b5b5;
-  mix-blend-mode: difference;
-  overflow: hidden;
+  font-size: 2rem;
+  color: #000;
 
+  overflow: hidden;
+  opacity: 0.9;
+}
+
+
+
+.menu3{
+  cursor: pointer;
+  position: absolute;
+  right: 60px;
+  top: 50px;
+  z-index: 999999;
+  height: fit-content;
+  font-size: 2rem;
+  color: var(--text);
+  overflow: hidden;
+  opacity: 0.8;
 }
 
 
@@ -272,13 +288,16 @@ main{
   left: 60px;
   bottom: 50px;
   z-index: 999999;
-  filter: blur(0.2px);
+  filter: blur(0.1px);
   height: fit-content;
-  font-size: 22px;
+  font-size: 2rem;
   color: #b5b5b5;
   mix-blend-mode: difference;
   overflow: hidden;
+}
 
+.bottomno p{
+  line-height: 100%;
 }
 
 
@@ -286,6 +305,9 @@ main{
 .loadingtext {
   overflow: hidden;
   opacity: 0;
+  position: absolute;
+  left: 60px;
+  bottom: 50px;
 }
 
 
@@ -297,16 +319,27 @@ main{
 }  */
 
 
+.centre2{
+  overflow: hidden;
+  font-size: 1.3rem;
+}
+
+.centre2, .centre{
+  opacity: 0;
+}
+
 .loadertxt{
-  color: #2b2b2b;
-  background: var(--bg);
-  height: 100vh;
+  color: var(--bg);
+  background: #080808;
+  height: 101vh;
   width: 100vw;
   display: flex;
+  flex-direction: column;
+
   align-items: center;
   justify-content: center;
   position: fixed;
-  top: 0;
+  top: -1vh;
   pointer-events: none;
   backdrop-filter: blur(10px);
   clip-path: polygon(0 100%, 100% 100%, 100% 0%, 0% 0%)
@@ -333,8 +366,7 @@ main{
 .loadingtext{
   overflow: hidden;
   opacity: 0;
-
-  font-size: 2.5rem;
+  font-size: 3.2rem;
 }
 
 .opacity{
@@ -351,6 +383,10 @@ main{
   line-height: 20px;
   clip-path: polygon(0 0,100% 0, 100% 70px, 0 70px);
   font-size: 9rem;
+}
+
+.sup{
+  opacity: 0;
 }
 
 
@@ -438,7 +474,7 @@ main{
   left: 0;
   height: 100vh;
   width: 100vw;
-  z-index: -9;
+
   pointer-events: none;
  }
 
@@ -484,10 +520,18 @@ main{
 
 .image1 img{
   clip-path: inset( 0 0 0 0 );
-  scale: 1.05;
-  opacity: 0.7;
+  scale: 1.1;
+  opacity: 0;
 }
 
+
+
+.centre{
+   font-size: 4.4rem;
+   overflow: hidden;
+   font-weight: 500;
+   
+}
 
 
 
@@ -502,12 +546,14 @@ main{
 
 .imageside{
   width: 52vw;
-  height: calc(100vh );
+  height: 100vh ;
   position: absolute;
   right: 0;
-
   background: #000;
 }
+
+
+
 
 .textside{
   width: 50vw;
@@ -525,20 +571,37 @@ main{
   overflow: hidden;
 }
 
+
+.groundtext p{
+  line-height: 100%;
+}
 .menu2{
   cursor: pointer;
   position: absolute;
   left: 60px;
   top: 50px;
   z-index: 999999;
-  filter: blur(0.2px);
+  filter: blur(0.4px);
   height: fit-content;
-  font-size: 22px;
-  font-size: 22px;
+  font-size: 2.2rem;
   color: #cbcbcb;
   mix-blend-mode: difference;
   overflow: hidden;
 }
+
+.atthebottom2{
+  cursor: pointer;
+  position: absolute;
+  left: -6rem;
+  bottom: 50px;
+  z-index: 999999;
+  height: fit-content;
+  font-size: 2rem;
+  color: #000;
+  overflow: hidden;
+  opacity: 0.8;
+}
+
 
 
 .container__heading  .heading__line span {
@@ -593,7 +656,7 @@ main{
   top: 50%;
   transform: translate(-50%, -50%);
   font-size: 11rem;
-  line-height: 115%;
+  line-height: 100%;
   color: #cbcbcb;
   mix-blend-mode: difference;
 
@@ -699,7 +762,7 @@ main{
 
 
 .nike1{
-  height: 100vh;
+  height: 75rem;
   width: 100vw;
   position: relative;
 
@@ -708,14 +771,14 @@ main{
 
 
 .nike2{
-  height: 70vh;
+  height: 70rem;
   width: 100vw;
   position: relative;
 
 }
 
 .nike3{
-  height: 100vh;
+  height: 70rem;
   width: 100vw;
   position: relative;
 
@@ -759,11 +822,11 @@ main{
 }
 
 .nike1img{
-  height: calc(100vh - 20px);
-  width: 62rem;
+  height: calc(80rem - 20px);
+  width: 60rem;
 
   position: absolute;
-  right: 100px;
+  right: 10rem;
   
 }
 
@@ -771,20 +834,25 @@ main{
 
 
 .nike2img{
-  height: calc(70vh - 20px);
+  height: calc(50rem - 20px);
   width: 55rem;
 
   position: absolute;
-  left: 60px;
-  top: -20vh;
+  left: 6rem;
+  top: -10rem;
+}
+
+.remspacer{
+  height: 10rem;
 }
 
 .nike3img{
-  height: calc(90vh - 20px);
+  height: calc(76rem - 20px);
   width: 55rem;
-
+  top: -10rem;
   position: absolute;
-  left: 25%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 
@@ -814,7 +882,7 @@ main{
   width: 100vw;
   height: 100vh;
   font-size: 11rem;
-  line-height: 115%;
+  line-height: 100%;
 
   text-align: center;
   position: sticky;
@@ -848,7 +916,7 @@ main{
 
 .overimg{
   height: 40vh;
-  width: 420px;
+   width: 57.5vh; 
   background: #000;
   position: absolute;
   z-index: -9999999;
@@ -881,23 +949,154 @@ main{
   position: absolute;
   right: 60px;
   width: 37rem;
-  font-size: 27px;
+  font-size: 2.7rem;
   line-height: 175%;
 }
 
 
 .textatbottom{
   font-size: 12px;
+  margin-left: 0.3rem;
+  margin-top: 0.3rem;
   width: 60%;
   display: flex;
   justify-content: space-between;
+  font-size: 1.3rem;
+}
+
+
+
+/* info */
+
+.constantleftside{
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 56rem;
+  background: #000;
+  filter: grayscale(0.3);
+  overflow: hidden;
+
+}
+
+
+.constantleftside img{
+  height: 200%;
+  width: 100%;
+  left: 0%;
+  position: absolute;
+  top: -50%;
+  scale: 1;
+  opacity: 0.7;
+}
+
+.therest{
+  height: fit-content;
+  width: calc(100vw - 62rem - 12rem);
+  position: absolute;
+  right: 0;
+  top: 20rem;
+}
+
+.restspacer{
+  height: 12rem;
+}
+
+.finalspacer{
+  height: 20rem;
+}
+
+
+.juno{
+  height: 100vh;
+}
+
+
+.shortformtext{
+  font-size: 8rem;
+  color: #cbcbcb;
+  mix-blend-mode: difference;  
+}
+
+.moreshorttext{
+  width: calc(100vw - 62rem - 35rem);
+  margin-left: 9rem;
+  font-size: 2.2rem;
+  line-height: 175%;
+  opacity: 0.6;
+}
+
+.contactflex{
+  margin-left: 9rem;
+  font-size: 2.2rem;
+  line-height: 175%;
+
+}
+
+.contact{
+  opacity: 0.6;
+  overflow: hidden;
+  transition: opacity 0.5s;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.contact:hover{
+  opacity: 1;
+}
+
+
+.important{
+  margin-left: 9rem;
+  font-size: 2.8rem;
+  color: #cbcbcb;
+  mix-blend-mode: difference;  
+}
+
+
+.spacing{
+  height: 5.5rem;
+}
+
+.mintitle{
+  margin-left: 9rem;
+  font-size: 2.9rem;
+}
+
+.tinyspacing{
+  height: 3.5rem;
+}
+
+.lessshorttext{
+  width: calc(100vw - 62rem - 41rem);
+  margin-left: 15rem;
+  font-size: 2.2rem;
+  line-height: 175%;
+  opacity: 0.6;
 }
 
 @media (max-width: 600px) {
 
 
-.fixed{
+.desktop{
   display: none;
 }
 
 }
+
+
+@media (max-width: 1180px) and (min-height: 820px) {
+
+  .desktop{
+    display: none;
+  }
+
+
+}
+
+@media (width: 1180px) and (min-height: 820px) {
+
+}
+
+

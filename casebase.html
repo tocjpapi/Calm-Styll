@@ -20,7 +20,7 @@
 
 
       <div class="imageside">
-        <img src="12.webp" alt="" draggable="false" srcset="">
+        <img id="hoverImage" src="12.webp" alt="" draggable="false" srcset="">
       </div>
 
       <div class="textside">
@@ -37,7 +37,7 @@
             </span>
     
             <span  class="heading__line">
-               <span> 2023</span>
+               <span> 2024</span>
             </span>
     
         </p>
@@ -160,15 +160,9 @@
 
 </div>
 
-<div class="more">
 
-     <div class="rightmore">
-        <div class="other-right-text">
-            <p>AUT:</p>
-        </div>
-        <p><span class="miniparagraph"></span>I was drawn unto this project by my love for Nike Apparel. The art direction of Nike has a really cool aestheatic that I just love. In this project, my aim was to make something similar to what Nike might do. The creative challenge for this project was to portray Nike's aestheatic in a yet acceptable but different way. </p>
-     </div>
-</div>
+<div class="remspacer"></div>
+
 
 
 <div class="itsover">
@@ -184,7 +178,7 @@
             </span>
     
             <span  class="heading__line">
-               <span> 2023</span>
+               <span> 2024</span>
             </span>
     
         </p>
@@ -244,7 +238,7 @@
     let isAnimating = false;
     let clickDisabled = false;
     const friction = 0;
-    const dragSensitivity = 1.1;
+    const dragSensitivity = 1.2;
     
     function clampScroll(scrollY) {
         const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
@@ -301,8 +295,16 @@
             animateScroll();
         } else if (event.key === 'ArrowDown') {
             targetScrollY = clampScroll(lenis.scroll + scrollAmount);
+            animateScroll();       
+        } else if (event.key === 'ArrowLeft') {
+            targetScrollY = clampScroll(lenis.scroll - scrollAmount);
             animateScroll();
-        } else if (event.key === ' ') {
+        } else if (event.key === 'ArrowRight') {
+            targetScrollY = clampScroll(lenis.scroll + scrollAmount);
+            animateScroll();
+        }
+        
+        else if (event.key === ' ') {
             event.preventDefault(); 
             targetScrollY = clampScroll(lenis.scroll + window.innerHeight);
             animateScroll();
@@ -391,49 +393,55 @@
     </script>
 
 <script>
-const container = document.querySelector('.grandtext');
-
-gsap.to(container.querySelectorAll('.heading__line span'), {
-    y: "0",
-    filter: "blur(0px)",
-    stagger: 0.2,
-    duration: 2,
-    ease: "expo.out"
-}, 0.8);
-</script>
-
-<script>
-    gsap.registerPlugin(ScrollTrigger);
+    const container = document.querySelector('.grandtext');
     
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: container,
-            start: "top 20%", 
-            end: "bottom 50%",
-            scrub: 3, 
-            ease: "power2.inOut"  
-        }
-    });
+    gsap.to(container.querySelectorAll('.heading__line span'), {
+        y: "0",
+        filter: "blur(0px)",
+        stagger: 0.2,
+        duration: 2,
+        ease: "expo.out"
+    },0);
+    </script>
     
-    tl.to(container.querySelectorAll('.heading__line span'), {
-        y: "-105",
-        stagger: -0.6,  
-        duration: 4,  
-        ease: "power2.inOut" 
-    },0)
-    .to('.bottomno p', {
-        y: "105",
-        duration: 4,  
-        ease: "power2.inOut" 
-    },0.1)
-
-    .to('.groundtext p', {
-        y: "-105",
-        duration: 4,  
-        ease: "power2.inOut" 
-    },0.2);
-</script>
-
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.next',
+                start: "top bottom", 
+                end: "top 20%",
+                scrub: 3, 
+                ease: "power2.inOut"  
+            }
+        });
+    
+        // First animation on heading__line spans
+        tl.to(container.querySelectorAll('.heading__line span'), {
+            y: "-105",
+            stagger: -0.6,  
+            duration: 4,  
+            ease: "power2.inOut" 
+        }, 0);
+    
+        // Animation on .bottomno p
+        tl.to('.bottomno p', {
+            y: "105",
+            duration: 4,  
+            ease: "power2.inOut",
+            stagger: -0.6 // Aligning stagger values
+        }, "<+=0.2"); // Starts slightly after the previous animation
+    
+        // Animation on .groundtext p
+        tl.to('.groundtext p', {
+            y: "-105",
+            duration: 4,  
+            ease: "power2.inOut",
+            stagger: -0.6 // Aligning stagger values
+        }, "<+=0.2"); // Starts slightly after the previous animation
+    </script>
+    
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
@@ -509,6 +517,65 @@ gsap.to('.picture', {
       height: "70vh",
     });
 </script>
+
+<script>
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+        }
+    });
+</script>
+
+
+<script type="text/javascript" src="bundle.js"></script>
+<script type="module">
+    const vertex = `
+        attribute vec2 uv;
+        attribute vec2 position;
+        varying vec2 vUv;
+        void main() {
+            vUv = uv;
+            gl_Position = vec4(position, 0, 1);
+        }
+    `;
+
+    const fragment = `
+        precision highp float;
+        precision highp int;
+        uniform sampler2D tWater;
+        uniform sampler2D tFlow;
+        uniform float uTime;
+        varying vec2 vUv;
+        uniform vec4 res;
+
+        void main() {
+            vec3 flow = texture2D(tFlow, vUv).rgb;
+            vec2 uv = .5 * gl_FragCoord.xy / res.xy;
+            vec2 myUV = (uv - vec2(0.5)) * res.zw + vec2(0.5);
+            myUV -= flow.xy * (0.15 * 0.7);
+
+            vec3 tex = texture2D(tWater, myUV).rgb;
+            gl_FragColor = vec4(tex.r, tex.g, tex.b, 1.0);
+        }
+    `;
+
+
+</script>
+
+<script>
+    document.addEventListener('wheel', function(event) {
+        if (event.ctrlKey) {
+            event.preventDefault();
+        }
+    }, { passive: false });
+
+    document.addEventListener('touchmove', function(event) {
+        if (event.scale !== 1) {
+            event.preventDefault();
+        }
+    }, { passive: false });
+</script>
+
 
     
 </body>
